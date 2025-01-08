@@ -7,6 +7,11 @@ on:
       IMAGE_PATH:
         type: string
         required: true
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
 
 name: Build and push to ECR
 
