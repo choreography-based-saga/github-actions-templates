@@ -47,6 +47,8 @@ jobs:
         with:
           repositories: 'choreography-based-saga/github-actions-templates'
           path: 'wf-scripts'
+      - name: List files for debugging
+        run: ls -R $GITHUB_WORKSPACE/wf-scripts
       - name: Build, tag, and push image to Amazon ECR
         id: build-and-push
         env:
