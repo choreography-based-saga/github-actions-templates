@@ -50,8 +50,6 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: PWD
-        run: pwd
       - name: Build, tag, and push image to Amazon ECR
         id: build-and-push
         env:
@@ -59,5 +57,6 @@ jobs:
           ECR_REPOSITORY: ${{ inputs.IMAGE_PATH}}
           IMAGE_TAG: ${{ github.sha }}
         run: |
+          chmod +x $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/build-and-tag-image.sh
           $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/build-and-tag-image.sh
           
