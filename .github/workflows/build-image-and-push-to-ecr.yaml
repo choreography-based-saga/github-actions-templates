@@ -29,7 +29,7 @@ jobs:
         with:
           repository: 'choreography-based-saga/github-actions-templates'
           path: 'wf-scripts'
-          token: $ {{ inputs.TOKEN }}
+          token:  ${{ secrets.TOKEN }}
       - name: List files for debugging
         run: ls -R $GITHUB_WORKSPACE/wf-scripts
       - name: Set up JDK 21
