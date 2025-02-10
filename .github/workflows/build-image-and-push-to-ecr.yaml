@@ -1,6 +1,9 @@
 on:
   workflow_call:
     inputs:
+      SERVICE_NAME:
+        type: string
+        required: true
       JAVA_VERSION:
         type: string
         required: true
@@ -60,4 +63,16 @@ jobs:
         run: |
           chmod +x $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/build-and-tag-image.sh
           $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/build-and-tag-image.sh
+      - name: Checkout k8s repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'choreography-based-saga/${{inputs.SERVICE_NAME}}-k8s'
+          path: 'k8s'
+          token: ${{ secrets.TOKEN }}
+      - name: Update deployment image tag
+        run: |
+          $GITHUB_WORKSPACE/wf-scripts/change-image-tag.sh
+      - name: Commit files
+        run: |
+          $GITHUB_WORKSPACE/wf-scripts/commit.sh
           
