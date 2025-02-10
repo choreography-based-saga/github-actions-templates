@@ -69,6 +69,8 @@ jobs:
           repository: 'choreography-based-saga/${{inputs.SERVICE_NAME}}-k8s'
           path: 'k8s'
           token: ${{ secrets.TOKEN }}
+      - name: Debug script location
+        run: ls -R $GITHUB_WORKSPACE/wf-scripts
       - name: Update deployment image tag
         run: |
           chmod +x $GITHUB_WORKSPACE/wf-scripts/change-image-tag.sh
