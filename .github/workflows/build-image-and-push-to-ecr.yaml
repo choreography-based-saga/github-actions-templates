@@ -71,8 +71,10 @@ jobs:
           token: ${{ secrets.TOKEN }}
       - name: Update deployment image tag
         run: |
+          chmod +x $GITHUB_WORKSPACE/wf-scripts/change-image-tag.sh
           $GITHUB_WORKSPACE/wf-scripts/change-image-tag.sh
       - name: Commit files
         run: |
+          chmod +x $GITHUB_WORKSPACE/wf-scripts/commit.sh
           $GITHUB_WORKSPACE/wf-scripts/commit.sh
           
