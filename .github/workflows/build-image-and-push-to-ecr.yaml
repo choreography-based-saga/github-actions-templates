@@ -78,7 +78,7 @@ jobs:
           chmod +x $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/commit.sh
           $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/commit.sh
       - name: Install kubectl
-        uses: azure/setup-kubectl@v2.0
+        uses: azure/setup-kubectl@v4
         id: install
       - name: Update kube config
         run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name saga-choreography-k8s
