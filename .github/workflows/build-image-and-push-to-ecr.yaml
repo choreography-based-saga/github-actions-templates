@@ -61,7 +61,6 @@ jobs:
           ECR_REPOSITORY: ${{ inputs.IMAGE_PATH}}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          chmod +x $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/build-and-tag-image.sh
           $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/build-and-tag-image.sh
       - name: Checkout k8s repository
         uses: actions/checkout@v4
@@ -71,11 +70,9 @@ jobs:
           token: ${{ secrets.TOKEN }}
       - name: Update deployment image tag
         run: |
-          chmod +x $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/change-image-tag.sh
           $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/change-image-tag.sh
       - name: Commit files
         run: |
-          chmod +x $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/commit.sh
           $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/commit.sh
       - name: Install kubectl
         uses: azure/setup-kubectl@v4
@@ -84,7 +81,6 @@ jobs:
         run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name saga-choreography-k8s
       - name: Deploy
         run: |
-          chmod +x $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/deploy.sh
           $GITHUB_WORKSPACE/wf-scripts/workflow-scripts/deploy.sh
 
           
